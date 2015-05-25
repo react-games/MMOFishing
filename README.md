@@ -1,3 +1,9 @@
-# React/ES6/Gulp boilerplate project
+# MMOFishing
 
-### For quickly getting React/ES6 project up and running.
+### I massively multiplayer online fishing game.
+
+To run:
+
+1. Clone repo, npm install, and run `gulp`.
+
+2. Go into `dist/` folder and open `index.html`.
