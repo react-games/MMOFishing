@@ -1,6 +1,6 @@
 # MMOFishing
 
-### I massively multiplayer online fishing game.
+### A massively multiplayer online fishing game.
 
 To run:
 
