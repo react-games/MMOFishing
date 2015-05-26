@@ -20,7 +20,7 @@ html, body, #game-container {
 
   #sky {
     height: 100px;
-    background-color: #ACD7F7;
+    background: linear-gradient(to bottom, #acd7f7 0%,#badaef 100%);
     top: 0;
     z-index: 10;
   }
@@ -238,7 +238,7 @@ html, body, #game-container {
             }
 
   #water {
-    background-color: #0091FF;
+    background: linear-gradient(to bottom, #0097D1 0%,#0091FF 100%); /* used to be #0091FF */
     top: 100px;
     bottom: 60px;
     opacity: 0.5;
