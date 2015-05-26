@@ -192,7 +192,7 @@ html, body, #game-container {
           width: 2px;
           background-color: #AAA;
           left: 70px;
-          bottom: -10px;
+          bottom: -8px;
           box-sizing: content-box;
           position: absolute;
           z-index: 20;
@@ -204,7 +204,7 @@ html, body, #game-container {
           width: 2px;
           background-color: #BBB;
           left: 70px;
-          bottom: -15px;
+          bottom: -13px;
           box-sizing: content-box;
           position: absolute;
           border-radius: 5px;
@@ -230,7 +230,7 @@ html, body, #game-container {
               width: 12px;
               background-color: white;
               left: 70px;
-              bottom: 8px;
+              bottom: 10px;
               position: absolute;
               border: 1px solid #EEE;
               border-radius: 2px 8px 3px 0px;
