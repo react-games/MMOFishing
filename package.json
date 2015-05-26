@@ -1,14 +1,14 @@
 {
-  "name": "react-es6-gulp-boilerplate",
-  "version": "0.0.1",
-  "description": "React/ES6 boilerplate project",
+  "name": "MMOFishing",
+  "version": "0.1.0",
+  "description": "A massively multiplayer online fishing game built with React and socket.io",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": " "
+    "url": "git@github.com:react-games/MMOFishing.git"
   },
   "author": "",
   "license": "ISC",
