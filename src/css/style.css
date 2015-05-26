@@ -28,7 +28,6 @@ html, body, #game-container {
   .boat {
     position: absolute;
     top: 75px;
-    left: 42%;
     height: 32px;
     width: 92px;
     z-index: 20;
@@ -158,7 +157,7 @@ html, body, #game-container {
 
       .boat-fishing-rod-line {
         background: #999;
-        height: 149px;
+        /* height: 149px; */
         width: 0px;
         left: 100px;
         position: absolute;
@@ -171,7 +170,7 @@ html, body, #game-container {
         height: 13px;
         width: 7px;
         border-style: none solid solid none;
-        top: 94px;
+        /* top: 94px; */
         left: 94px;
         position: absolute;
         border-radius: 0 0 75px 75px;

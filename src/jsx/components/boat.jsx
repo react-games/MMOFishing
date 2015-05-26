@@ -3,7 +3,7 @@ import React from 'react';
 class Boat extends React.Component {
   render() {
     return (
-      <div className="boat" style={{left: this.props.left}}>
+      <div className="boat" style={{left: this.props.gameState.boat.left}}>
         <div className="boat-body">
           <div className="boat-body-front"></div>
           <div className="boat-body-middle"></div>
@@ -17,8 +17,8 @@ class Boat extends React.Component {
         </div>
         <div className="boat-fishing-rod">
           <div className="boat-fishing-rod-pole"></div>
-          <div className="boat-fishing-rod-line"></div>
-          <div className="boat-fishing-rod-hook"></div>
+          <div className="boat-fishing-rod-line" style={{height: this.props.gameState.line.height}}></div>
+          <div className="boat-fishing-rod-hook" style={{top: this.props.gameState.hook.top}}></div>
         </div>
         <div className="boat-engine">
           <div className="boat-engine-box"></div>
