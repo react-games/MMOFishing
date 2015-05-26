@@ -3,7 +3,7 @@ import React from 'react';
 class Boat extends React.Component {
   render() {
     return (
-      <div className="boat">
+      <div className="boat" style={{left: this.props.left}}>
         <div className="boat-body">
           <div className="boat-body-front"></div>
           <div className="boat-body-middle"></div>
