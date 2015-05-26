@@ -20,15 +20,17 @@ var App = React.createClass ({
   },
 
   handleKeyDown: function(e) {
-      if (e.keyCode === 37) {
+      if (e.keyCode === 37 && this.state.boat.left > 0) {
         this.setState({boat: {left: this.state.boat.left - 10}});
       }
       else if (e.keyCode === 39) {
         this.setState({boat: {left: this.state.boat.left + 10}});
-      } else if (e.keyCode === 40 ) {
+      }
+      else if (e.keyCode === 40 ) {
         this.setState({line: {height: this.state.line.height + 10}});
         this.setState({hook: {top: this.state.hook.top + 10}});
-      } else if (e.keyCode === 38 ) {
+      }
+      else if (e.keyCode === 38 && this.state.line.height > 9) {
         this.setState({line: {height: this.state.line.height - 10}});
         this.setState({hook: {top: this.state.hook.top - 10}});
       }
