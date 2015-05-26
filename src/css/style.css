@@ -144,22 +144,25 @@ html, body, #game-container {
     }
 
       .boat-fishing-rod-pole {
-        background: black;
-        height: 47px;
-        width: 1px;
-        left: 72px;
-        bottom: 10px;
+        height: 35px;
+        width: 20px;
+        left: 66px;
+        bottom: 19px;
+        border-width: 1px 0px 0px 1px;
+        border-color: black;
+        border-style: solid;
+        border-radius: 28px 0px 0px 0px;
+        transform: skewX(-40deg);
         position: absolute;
-        transform: rotateZ(55deg);
       }
 
       .boat-fishing-rod-line {
         background: #999;
         height: 149px;
         width: 0px;
-        left: 91px;
+        left: 100px;
         position: absolute;
-        top: -46px;
+        top: -54px;
         border-left: 1px dotted #666;
       }
 
@@ -168,8 +171,8 @@ html, body, #game-container {
         height: 13px;
         width: 7px;
         border-style: none solid solid none;
-        top: 102px;
-        left: 85px;
+        top: 94px;
+        left: 94px;
         position: absolute;
         border-radius: 0 0 75px 75px;
       }
