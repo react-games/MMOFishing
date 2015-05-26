@@ -21,11 +21,11 @@ class Boat extends React.Component {
           <div className="boat-fishing-rod-hook"></div>
         </div>
         <div className="boat-engine">
+          <div className="boat-engine-box"></div>
           <div className="boat-propeller">
             <div className="boat-propeller-shaft"></div>
             <div className="boat-propeller-blade-1"></div>
           </div>
-          <div className="boat-engine-box"></div>
         </div>
       </div>
     )
