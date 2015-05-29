@@ -4,8 +4,11 @@ var babelify = require('babelify');
 var del = require('del');
 var source = require('vinyl-source-stream');
 var stylus = require('gulp-stylus');
+var autoprefixer = require('gulp-autoprefixer');
 var minifyCSS = require('gulp-minify-css');
 var concat = require('gulp-concat');
+var uncss = require('gulp-uncss');
+var browserSync = require('browser-sync').create();
 
 var paths = {
   src: {
@@ -36,8 +39,12 @@ gulp.task('clean:html', function(done) {
 gulp.task('css', ['clean:css'], function() {
   return gulp.src(paths.src.css)
     .pipe(stylus())
+    .pipe(autoprefixer())
     .pipe(minifyCSS())
     .pipe(concat('style.min.css'))
+    //.pipe(uncss({
+    //  html: ['./dist/index.html'] // why this not work?
+    //}))
     .pipe(gulp.dest(paths.dest.css));
 });
 
@@ -54,7 +61,7 @@ gulp.task('jsx', ['clean:js'], function () {
 });
 
 gulp.task('html', ['clean:html'], function(){
-  gulp.src(paths.src.html)
+  gulp.src(paths.src.html)
   .pipe(gulp.dest(paths.dest.dist));
 });
 
