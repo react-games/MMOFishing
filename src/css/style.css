@@ -25,11 +25,15 @@ html, body, #game-container {
     z-index: 10;
   }
 
+  .flip {
+    transform: rotateY(180deg);
+  }
+
   .boat {
     position: absolute;
     top: 75px;
     height: 32px;
-    width: 92px;
+    width: 101px;
     z-index: 20;
     transform-origin: right;
   }
