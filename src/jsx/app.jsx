@@ -33,11 +33,11 @@ var App = React.createClass({
         return;
       }
 
-      this.setState({boat: {left: this.state.boat.left + howFar > 0 ? this.state.boat.left + howFar : 0 }});
-
       if (howFar > 0) {
+        this.setState({boat: {left: this.state.boat.left + howFar > 0 ? this.state.boat.left + howFar : 0 }});
         howFar -= 1;
       } else if (howFar < 0) {
+        this.setState({boat: {left: this.state.boat.left + howFar > 0 ? this.state.boat.left + howFar : 0 }});
         howFar += 1;
       }
     };
