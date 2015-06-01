@@ -20,18 +20,56 @@ var App = React.createClass({
     };
   },
 
-  moveBoat: function(whichWay, howFar) {
-    if (howFar === 0) { return; }
+  moveBoat: undefined,
 
-    if (whichWay === "LEFT" && this.state.boat.left > 0) {
-      this.setState({boat: {left: this.state.boat.left - howFar}});
-    } else if (whichWay === "RIGHT") {
-      this.setState({boat: {left: this.state.boat.left + howFar}});
-    }
+  boatMovements: function() {
+    var howFar = 0;
+    var howFast = 60; // This is milliseconds for setInterval. The lower the faster.
+    var interval;
 
-    howFar = howFar > 0 ? howFar -= 1 : howFar += 1;
+    const moveBoat = () => {
+      if (howFar < 0 && this.state.boat.left <= 0) {
+        howFar = 0;
+        return;
+      }
 
-    setTimeout(function() { this.moveBoat(whichWay, howFar); }.bind(this), 60);
+      this.setState({boat: {left: this.state.boat.left + howFar > 0 ? this.state.boat.left + howFar : 0 }});
+
+      if (howFar > 0) {
+        howFar -= 1;
+      } else if (howFar < 0) {
+        howFar += 1;
+      }
+    };
+
+    moveBoat.addRightDistance = function() {
+      howFar = howFar < 50 ? howFar + 10 : 50;
+    };
+
+    moveBoat.addLeftDistance = function() {
+      howFar = howFar > -50 ? howFar - 10 : -50;
+    };
+
+    moveBoat.decideWhatToDo = function(e) {
+      if (e.keyCode === 37) {
+        moveBoat.addLeftDistance();
+        this.setState({boatDirection: ''});
+      }
+      else if (e.keyCode === 39) {
+        moveBoat.addRightDistance();
+        this.setState({boatDirection: 'flipped'});
+      }
+      else if (e.keyCode === 40 ) {
+        this.moveLine("DOWN", 9);
+      }
+      else if (e.keyCode === 38 && this.state.line.height > 9) {
+        this.moveLine("UP", 9);
+      }
+    }.bind(this);
+
+    interval = setInterval(function() { moveBoat.call(this); }.bind(this), howFast);
+
+    return moveBoat;
   },
 
   moveLine: function(whichWay, howFar) {
@@ -50,25 +88,20 @@ var App = React.createClass({
     setTimeout(function() { this.moveLine(whichWay, howFar); }.bind(this), 60);
   },
 
-  handleKeyDown: function(e) {
-      if (e.keyCode === 37 && this.state.boat.left > 0) {
-        this.moveBoat('LEFT', 10);
-        this.setState({boatDirection: ''});
-      }
-      else if (e.keyCode === 39) {
-        this.moveBoat('RIGHT', 10);
-        this.setState({boatDirection: 'flip'});
-      }
-      else if (e.keyCode === 40 ) {
-        this.moveLine("DOWN", 9);
-      }
-      else if (e.keyCode === 38 && this.state.line.height > 9) {
-        this.moveLine("UP", 9);
-      }
+  handleKeyDown: undefined,
+
+  handleKeyUp: function() {
+    return;
+  },
+
+  componentWillMount: function() {
+    this.moveBoat = this.boatMovements();
+    this.handleKeyDown = this.moveBoat.decideWhatToDo;
   },
 
   componentDidMount: function() {
     document.addEventListener("keydown", this.handleKeyDown);
+    document.addEventListener("keyup", this.handleKeyUp);
   },
 
   render: function() {

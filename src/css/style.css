@@ -25,7 +25,7 @@ html, body, #game-container {
     z-index: 10;
   }
 
-  .flip {
+  .flipped {
     transform: rotateY(180deg);
   }
 
@@ -35,7 +35,9 @@ html, body, #game-container {
     height: 32px;
     width: 101px;
     z-index: 20;
-    transform-origin: right;
+    transform-origin: middle;
+    transition-duration: 150ms;
+    transition-property: transform;
   }
 
     .boat-body {
