@@ -9,6 +9,7 @@ var minifyCSS = require('gulp-minify-css');
 var concat = require('gulp-concat');
 var uncss = require('gulp-uncss');
 var browserSync = require('browser-sync').create();
+var reload = browserSync.reload;
 
 var paths = {
   src: {
@@ -45,7 +46,8 @@ gulp.task('css', ['clean:css'], function() {
     //.pipe(uncss({
     //  html: ['./dist/index.html'] // why this not work?
     //}))
-    .pipe(gulp.dest(paths.dest.css));
+    .pipe(gulp.dest(paths.dest.css))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('jsx', ['clean:js'], function () {
@@ -65,12 +67,16 @@ gulp.task('html', ['clean:html'], function(){
   .pipe(gulp.dest(paths.dest.dist));
 });
 
-// Rerun tasks whenever a file changes.
-gulp.task('watch', function() {
-  gulp.watch(paths.src.css, ['css']);
-  gulp.watch(paths.src.jsx, ['jsx']);
-  gulp.watch(paths.src.html, ['html']);
+gulp.task('serve', ['html', 'jsx', 'css'], function() {
+
+    browserSync.init({
+        server: "./dist"
+    });
+
+    gulp.watch(paths.src.css, ['css']);
+    gulp.watch(paths.src.jsx, ['jsx']).on('change', reload);
+    gulp.watch(paths.src.html, ['html']).on('change', reload);
 });
 
 // The default task (called when we run `gulp` from cli)
-gulp.task('default', ['watch', 'css', 'jsx', 'html']);
+gulp.task('default', ['serve']);
