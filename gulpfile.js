@@ -50,7 +50,7 @@ gulp.task('css', ['clean:css'], function() {
     .pipe(browserSync.stream());
 });
 
-gulp.task('jsx', ['clean:js'], function () {
+gulp.task('jsx', ['clean:js'], function() {
   browserify({
     entries: paths.src.appJs,
     extensions: ['.jsx'],
@@ -59,24 +59,27 @@ gulp.task('jsx', ['clean:js'], function () {
   .transform(babelify)
   .bundle()
   .pipe(source('app.js'))
-  .pipe(gulp.dest(paths.dest.js));
+  .pipe(gulp.dest(paths.dest.js))
+  .on('end', reload);
 });
 
-gulp.task('html', ['clean:html'], function(){
+gulp.task('html', ['clean:html'], function() {
   gulp.src(paths.src.html)
-  .pipe(gulp.dest(paths.dest.dist));
+  .pipe(gulp.dest(paths.dest.dist))
+  .on('end', reload);
 });
 
-gulp.task('serve', ['html', 'jsx', 'css'], function() {
-
+gulp.task('serve', function() {
     browserSync.init({
         server: "./dist"
     });
 
     gulp.watch(paths.src.css, ['css']);
-    gulp.watch(paths.src.jsx, ['jsx']).on('change', reload);
-    gulp.watch(paths.src.html, ['html']).on('change', reload);
+    gulp.watch(paths.src.jsx, ['jsx']);
+    gulp.watch(paths.src.html, ['html']);
 });
 
 // The default task (called when we run `gulp` from cli)
-gulp.task('default', ['serve']);
+gulp.task('default', ['html', 'jsx', 'css'], function() {
+  gulp.task('serve');
+});
