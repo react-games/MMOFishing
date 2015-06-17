@@ -5,10 +5,10 @@ import Ground from './components/ground.jsx';
 import Boat from './components/boat.jsx';
 
 var App = React.createClass({
-  getInitialState: function() {
+  getInitialState: () => {
     return {
       boat: {
-        left: 400
+        left: 600
       },
       boatDirection: '',
       line: {
@@ -24,7 +24,8 @@ var App = React.createClass({
 
   boatMovements: function() {
     var howFar = 0;
-    var howFast = 60; // This is milliseconds for setInterval. The lower the faster.
+    var howMuchFarther = 10;
+    var howFast = 50; // This is milliseconds for setInterval. The lower the faster.
     var interval;
 
     const moveBoat = () => {
@@ -42,15 +43,15 @@ var App = React.createClass({
       }
     };
 
-    moveBoat.addRightDistance = function() {
-      howFar = howFar < 50 ? howFar + 10 : 50;
+    moveBoat.addRightDistance = () => {
+      howFar = howFar < 50 ? howFar + howMuchFarther : 50;
     };
 
-    moveBoat.addLeftDistance = function() {
-      howFar = howFar > -50 ? howFar - 10 : -50;
+    moveBoat.addLeftDistance = () => {
+      howFar = howFar > -50 ? howFar - howMuchFarther : -50;
     };
 
-    moveBoat.decideWhatToDo = function(e) {
+    moveBoat.decideWhatToDo = e => {
       if (e.keyCode === 37) {
         moveBoat.addLeftDistance();
         this.setState({boatDirection: ''});
@@ -65,9 +66,9 @@ var App = React.createClass({
       else if (e.keyCode === 38 && this.state.line.height > 9) {
         this.moveLine("UP", 9);
       }
-    }.bind(this);
+    };
 
-    interval = setInterval(function() { moveBoat.call(this); }.bind(this), howFast);
+    interval = setInterval(() => { moveBoat.call(this); }, howFast);
 
     return moveBoat;
   },
